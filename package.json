@@ -1,0 +1,19 @@
+{
+  "name": "reactrr",
+  "version": "1.0.0",
+  "description": "An educational Twitter Clone",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MiguhRuiz/Reactrr.git"
+  },
+  "author": "Miguh Ruiz <m@miguhruiz.xyz> (https://miguhruiz.xyz/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MiguhRuiz/Reactrr/issues"
+  },
+  "homepage": "https://github.com/MiguhRuiz/Reactrr#readme"
+}
