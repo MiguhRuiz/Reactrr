@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import uuid from 'uuid'
 
 import MessagesList from '../MessagesList'
 import InputText from '../InputText'
@@ -11,6 +12,7 @@ class Main extends Component {
       openText: false,
       messages: [
         {
+          id: uuid.v4(),
           text: 'Mensaje del tweet',
           picture: 'https://pbs.twimg.com/profile_images/825108498040156160/w148h2X_.jpg',
           displayName: 'Miguh Ruiz',
@@ -18,6 +20,7 @@ class Main extends Component {
           date: Date.now() - 180000
         },
         {
+          id: uuid.v4(),
           text: 'Este es un nuevo mensaje',
           picture: 'https://pbs.twimg.com/profile_images/825108498040156160/w148h2X_.jpg',
           displayName: 'Miguh Ruiz',
