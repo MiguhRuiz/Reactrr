@@ -13,7 +13,7 @@ class ProfileBar extends Component {
           <img className={styles.avatar} src={this.props.picture} />
         </figure>
         <span className={styles.username}>Hola @{this.props.username}!</span>
-        <button onClick={this.props.openText} className={styles.button}>
+        <button onClick={this.props.onOpenText} className={styles.button}>
           <span className="fa fa-lg fa-edit"></span> Tweet!
         </button>
       </div>
