@@ -29,6 +29,26 @@ class Main extends Component {
         }
       ]
     }
+    this.handleSendText = this.handleSendText.bind(this)
+    this.handleCloseText = this.handleCloseText.bind(this)
+    this.handleOpenText = this.handleOpenText.bind(this)
+  }
+
+  handleSendText(ev) {
+    ev.preventDefault()
+    let newMessage = {
+      id: uuid.v4(),
+      username: this.props.user.email.split('@')[0],
+      displayName: this.props.user.displayName,
+      date: Date.now(),
+      text: ev.target.text.value
+    }
+    console.log(newMessage)
+  }
+
+  handleCloseText(ev) {
+    ev.preventDefault()
+    this.setState({ openText: false })
   }
 
   handleOpenText(ev) {
@@ -38,7 +58,12 @@ class Main extends Component {
 
   renderOpenText() {
     if(this.state.openText) {
-      return <InputText />
+      return (
+        <InputText
+          onSendText={this.handleSendText}
+          onCloseText={this.handleCloseText}
+        />
+      )
     }
   }
 
@@ -48,7 +73,7 @@ class Main extends Component {
         <ProfileBar
           picture={this.props.user.photoURL}
           username={this.props.user.email.split('@')[0]}
-          onOpenText={this.handleOpenText.bind(this)}
+          onOpenText={this.handleOpenText}
         />
         {this.renderOpenText()}
         <MessagesList messages={this.state.messages} />
