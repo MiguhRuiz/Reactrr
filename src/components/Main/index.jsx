@@ -40,10 +40,14 @@ class Main extends Component {
       id: uuid.v4(),
       username: this.props.user.email.split('@')[0],
       displayName: this.props.user.displayName,
+      picture: this.props.user.photoURL,
       date: Date.now(),
       text: ev.target.text.value
     }
-    console.log(newMessage)
+    this.setState({
+      messages: this.state.messages.concat([newMessage]),
+      openText: false
+    })
   }
 
   handleCloseText(ev) {

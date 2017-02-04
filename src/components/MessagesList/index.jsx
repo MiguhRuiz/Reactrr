@@ -22,7 +22,7 @@ class MessagesList extends Component {
                 date={msg.date}
               />
             )
-          })
+          }).reverse()
         }
       </div>
     )
