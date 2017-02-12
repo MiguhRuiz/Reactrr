@@ -1,6 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 
 import styles from './login.css'
+
+const propTypes = {
+  onAuth: PropTypes.func.isRequired
+}
 
 class Login extends Component {
   render() {
@@ -20,5 +24,7 @@ class Login extends Component {
     )
   }
 }
+
+Login.propTypes = propTypes
 
 export default Login
