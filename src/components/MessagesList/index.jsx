@@ -5,7 +5,7 @@ import styles from './message-list.css'
 
 const propTypes = {
   messages: PropTypes.arrayOf(PropTypes.object).isRequired,
-  onReply: PropTypes.func.isRequired,
+  onRetweet: PropTypes.func.isRequired,
   onFavorite: PropTypes.func.isRequired,
   onReplyTweet: PropTypes.func.isRequired
 }

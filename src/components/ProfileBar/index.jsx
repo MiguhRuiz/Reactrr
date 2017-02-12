@@ -5,7 +5,8 @@ import styles from './profilebar.css'
 const propTypes = {
   picture: PropTypes.string.isRequired,
   username:PropTypes.string.isRequired,
-  onOpenText: PropTypes.func.isRequired
+  onOpenText: PropTypes.func.isRequired,
+  onLogout: PropTypes.func.isRequired
 }
 
 class ProfileBar extends Component {
@@ -24,6 +25,9 @@ class ProfileBar extends Component {
         <span className={styles.username}>Hola @{this.props.username}!</span>
         <button onClick={this.props.onOpenText} className={styles.button}>
           <span className="fa fa-lg fa-edit"></span> Tweet!
+        </button>
+        <button onClick={this.props.onLogout} className={styles.button}>
+          <span className="fa fa-sign-out"></span> Salir
         </button>
       </div>
     )

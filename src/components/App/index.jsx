@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { HashRouter, Match } from 'react-router'
+import firebase from 'firebase'
 import 'normalize-css'
 
 import styles from './app.css'
@@ -16,10 +17,31 @@ class App extends Component {
       user: null
     }
     this.handleOnAuth = this.handleOnAuth.bind(this)
+    this.handleLogout = this.handleLogout.bind(this)
+  }
+
+  componentWillMount () {
+    firebase.auth().onAuthStateChanged(user => {
+      if(user) {
+        this.setState({ user })
+      } else {
+        this.setState({ user: null })
+      }
+    })
   }
 
   handleOnAuth() {
-    console.log('Auth')
+    const provider = new firebase.auth.GithubAuthProvider()
+
+    firebase.auth().signInWithPopup(provider)
+      .then(result => console.log(`${result.user.email} ha iniciado sesión`))
+      .catch(err => console.error(`Error: ${err.code}: ${err.message}`))
+  }
+
+  handleLogout () {
+    firebase.auth().signOut()
+      .then(() => console.log('Te has desconectado correctamente'))
+      .catch(() => console.error('Un error ocurrió'))
   }
 
   render() {
@@ -33,6 +55,7 @@ class App extends Component {
               return (
                 <Main
                   user={this.state.user}
+                  onLogout={this.handleLogout}
                 />
               )
             } else {
