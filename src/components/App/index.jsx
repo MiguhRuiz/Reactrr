@@ -11,7 +11,7 @@ import Profile from '../Profile'
 import Login from '../Login'
 
 class App extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       user: null
@@ -30,7 +30,7 @@ class App extends Component {
     })
   }
 
-  handleOnAuth() {
+  handleOnAuth () {
     const provider = new firebase.auth.GithubAuthProvider()
 
     firebase.auth().signInWithPopup(provider)
@@ -44,14 +44,14 @@ class App extends Component {
       .catch(() => console.error('Un error ocurrió'))
   }
 
-  render() {
+  render () {
     return(
       <HashRouter>
         <div>
           <Header />
 
           <Match exactly pattern='/' render={() => {
-            if(this.state.user) {
+            if (this.state.user) {
               return (
                 <Main
                   user={this.state.user}
@@ -59,13 +59,13 @@ class App extends Component {
                 />
               )
             } else {
-              return(
+              return (
                 <Login
                   onAuth={this.handleOnAuth}
                 />
               )
             }
-          }}/>
+          }} />
 
           <Match pattern='/profile' render={() => (
             <Profile
@@ -75,14 +75,14 @@ class App extends Component {
               location={this.state.user.location}
               emailAddress={this.state.user.email}
             />
-          )}/>
+          )} />
 
           <Match pattern='/user/:username' render={({ params }) => (
             <Profile
               displayName={params.username}
               username={params.username}
             />
-          )}/>
+          )} />
 
         </div>
       </HashRouter>

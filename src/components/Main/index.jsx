@@ -12,7 +12,7 @@ const propTypes = {
 }
 
 class Main extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       user: Object.assign({}, this.props.user, {
@@ -42,7 +42,7 @@ class Main extends Component {
     })
   }
 
-  handleSendText(ev) {
+  handleSendText (ev) {
     ev.preventDefault()
     let newMessage = {
       id: uuid.v4(),
@@ -60,21 +60,21 @@ class Main extends Component {
     messageID.set(newMessage)
   }
 
-  handleCloseText(ev) {
+  handleCloseText (ev) {
     ev.preventDefault()
     this.setState({ openText: false })
   }
 
-  handleOpenText(ev) {
+  handleOpenText (ev) {
     ev.preventDefault()
     this.setState({ openText: true })
   }
 
-  handleRetweet(msgId) {
+  handleRetweet (msgId) {
     let alreadyRetweeted = this.state.user.retweets.filter(rt => rt === msgId)
-    if(alreadyRetweeted.length === 0) {
+    if (alreadyRetweeted.length === 0) {
       let messages = this.state.messages.map(msg => {
-        if(msg.id === msgId) {
+        if (msg.id === msgId) {
           msg.retweets++
         }
         return msg
@@ -90,11 +90,11 @@ class Main extends Component {
     }
   }
 
-  handleFavorite(msgId) {
+  handleFavorite (msgId) {
     let alreadyFavorited = this.state.user.favorites.filter(fav => fav === msgId)
-    if(alreadyFavorited.length === 0) {
+    if (alreadyFavorited.length === 0) {
       let messages = this.state.messages.map(msg => {
-        if(msg.id === msgId) {
+        if (msg.id === msgId) {
           msg.favorites++
         }
         return msg
@@ -110,15 +110,15 @@ class Main extends Component {
     }
   }
 
-  handleReplyTweet(msgId, userNameToReply) {
+  handleReplyTweet (msgId, userNameToReply) {
     this.setState({
       openText: true,
       userNameToReply
     })
   }
 
-  renderOpenText() {
-    if(this.state.openText) {
+  renderOpenText () {
+    if (this.state.openText) {
       return (
         <InputText
           onSendText={this.handleSendText}
@@ -129,8 +129,8 @@ class Main extends Component {
     }
   }
 
-  render() {
-    return(
+  render () {
+    return (
       <div>
         <ProfileBar
           picture={this.props.user.photoURL}

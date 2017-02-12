@@ -7,8 +7,8 @@ const propTypes = {
 }
 
 class Login extends Component {
-  render() {
-    return(
+  render () {
+    return (
       <div className={styles.root}>
         <p className={styles.text}>
           Necesitamos que inicies sesión con tu cuenta de GitHub

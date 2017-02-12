@@ -9,8 +9,8 @@ const propTypes = {
 }
 
 class InputText extends Component {
-  render() {
-    return(
+  render () {
+    return (
       <form className={styles.form} onSubmit={this.props.onSendText}>
         <textarea className={styles.text} name='text'>
           {(this.props.userNameToReply) ? `@${this.props.userNameToReply} ` : ''}
