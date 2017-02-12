@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import uuid from 'uuid'
+import firebase from 'firebase'
 
 import MessagesList from '../MessagesList'
 import InputText from '../InputText'
@@ -20,28 +21,7 @@ class Main extends Component {
       }),
       openText: false,
       userNameToReply: '',
-      messages: [
-        {
-          id: uuid.v4(),
-          text: 'Mensaje del tweet',
-          picture: 'https://pbs.twimg.com/profile_images/825108498040156160/w148h2X_.jpg',
-          displayName: 'Miguh Ruiz',
-          username: 'MiguhRuiz',
-          date: Date.now() - 180000,
-          retweets: 0,
-          favorites: 0
-        },
-        {
-          id: uuid.v4(),
-          text: 'Este es un nuevo mensaje',
-          picture: 'https://pbs.twimg.com/profile_images/825108498040156160/w148h2X_.jpg',
-          displayName: 'Miguh Ruiz',
-          username: 'MiguhRuiz',
-          date: Date.now() - 1800000,
-          retweets: 0,
-          favorites: 0
-        }
-      ]
+      messages: []
     }
     this.handleSendText = this.handleSendText.bind(this)
     this.handleCloseText = this.handleCloseText.bind(this)
@@ -49,6 +29,17 @@ class Main extends Component {
     this.handleRetweet = this.handleRetweet.bind(this)
     this.handleFavorite = this.handleFavorite.bind(this)
     this.handleReplyTweet = this.handleReplyTweet.bind(this)
+  }
+
+  componentWillMount () {
+    const messagesRef = firebase.database().ref().child('messages')
+
+    messagesRef.on('child_added', snapshot => {
+      this.setState({
+        messages: this.state.messages.concat(snapshot.val()),
+        openText: false
+      })
+    })
   }
 
   handleSendText(ev) {
@@ -63,10 +54,10 @@ class Main extends Component {
       retweets: 0,
       favorites: 0
     }
-    this.setState({
-      messages: this.state.messages.concat([newMessage]),
-      openText: false
-    })
+
+    const messageRef = firebase.database().ref().child('messages')
+    const messageID = messageRef.push()
+    messageID.set(newMessage)
   }
 
   handleCloseText(ev) {
